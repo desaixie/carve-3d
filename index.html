@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Fast feed-forward text-to-3D">
+  <meta name="keywords" content="Carve3D, Text-to-3D">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Carve3D: Improving Multi-view Reconstruction Consistency for Diffusion Models with RL Finetuning</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <script async src="https://unpkg.com/es-module-shims@1.8.0/dist/es-module-shims.js"></script>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.156.1/build/three.module.js",
+        "three/controls/OrbitControls": "https://unpkg.com/three@0.156.1/examples/jsm/controls/OrbitControls.js",
+        "three/libs/stats": "https://unpkg.com/three@0.156.1/examples/jsm/libs/stats.module.js"
+      }
+    }
+  </script>
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js"></script>
+  <style>
+    model-viewer {
+      width: 300px;
+      height: 300px;
+    }
+  </style>  
+</head>
+
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title"> 
+            <span class="dnerf">Carve3D: Improving Multi-view Reconstruction Consistency for Diffusion Models with RL Finetuning</span>
+          </h1>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://desaixie.github.io/">Desai Xie</a><sup>1,2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://jiahao.ai">Jiahao Li</a><sup>1,3</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.cs.unc.edu/~airsplay/">Hao Tan</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.sunxin.name/">Xin Sun</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://zhixinshu.github.io/">Zhixin Shu</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://zhouyisjtu.github.io/">Yi Zhou</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://sai-bi.github.io/">Sai Bi</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://storage.googleapis.com/pirk.io/index.html">Sören Pirk</a><sup>4</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www3.cs.stonybrook.edu/~ari/">Arie E. Kaufman</a><sup>2</sup>,
+            </span>
+<!--            <span class="author-block">Anonymous Authors</span> -->
+            <p><br></p>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+		    <sup>1</sup><a href="https://research.adobe.com/">Adobe Research</a> &nbsp;&nbsp;
+		    <sup>2</sup><a href="https://www.stonybrook.edu/">Stony Brook University</a> &nbsp;&nbsp;
+		    <sup>3</sup><a href="https://ttic.edu/">TTIC</a> &nbsp;&nbsp;
+		    <sup>4</sup><a href="https://www.uni-kiel.de/en/">Kiel University</a> &nbsp;&nbsp;
+	        </span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <p><br></p>
+            <span class="author-block">
+              Text-to-3D, diffusion model Reinforcement Learning Finetuning (RLFT), and a novel Multi-view Reconstruction Consistency (MRC) metric.
+            </span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body" style="display: flex; justify-content: center;">
+      <img src="./static/images/figure_teaser.png" style="width: 80%; border: none;" alt="Teaser Figure">
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+          Recent advancements in the text-to-3D task leverage
+          finetuned text-to-image diffusion models to generate multi-
+          view images, followed by NeRF reconstruction. Yet, existing
+          supervised finetuned (SFT) diffusion models still suffer from
+          multi-view inconsistency and the resulting NeRF artifacts.
+          Although training longer with SFT improves consistency, it
+          also causes distribution shift, which reduces diversity and
+          realistic details. We argue that the SFT of multi-view diffusion
+          models resembles the instruction finetuning stage of the
+          LLM RLHF pipeline and can benefit from <strong>RL finetuning (RLFT)</strong> methods. Essentially, RLFT
+          methods optimize models beyond their SFT data distribution,
+          effectively mitigating distribution shift. To this end, we
+          introduce <strong>Carve3D</strong>, a RLFT method coupled with the <strong>Multi-
+          view Reconstruction Consistency (MRC)</strong> metric, to improve
+          the consistency of multi-view diffusion models. To compute
+          MRC on a set of multi-view images, we compare them with
+          their corresponding renderings of the reconstructed NeRF
+          at the same viewpoints. We validate the robustness of MRC
+          with extensive experiments conducted under controlled inconsistency
+          levels. Our enhancements to the base RLFT
+          algorithm stabilizes the training process, reduces distribution
+          shift, and identifies scaling laws. Through qualitative
+          and quantitative experiments, along with a user study, we
+          demonstrate Carve3D’s improved multi-view consistency,
+          the resulting superior NeRF reconstruction quality, and
+          minimal distribution shift compared to longer SFT.
+          </p>
+        </div>
+      </div>
+    </div>
+    <img src="./static/images/figure_overview.png" alt="pipeline">
+    <p><strong>Figure 2</strong>. Overview of Carve3D. Given a prompt sampled from the curated prompt set, we run the denoising process to obtain the final
+    denoised image, which contains four multi-view images tiled in a 2-by-2 grid. MRC reward is computed by comparing (a) the generated
+    multi-view images with (c) the corresponding multi-view images rendered at the same camera viewpoints from (b) the reconstructed NeRF.
+    Then, we train the model with policy gradient loss function, where the loss is derived from the reward and log probabilities of the model’s
+    predicted noise, accumulated across all denoising timesteps. Using only a set of prompts, this RLFT process finetunes the diffusion model
+    with its own outputs, without relying on ground truth multi-view images.
+      </p>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3" style="display: flex; justify-content: center;">Improving Multi-view Consistency and NeRF Quality</h2>
+    <div class="hero-body" style="display: flex; justify-content: center;">
+      <img src="./static/images/figure_suppl_qualitative.png" style="width: 100%; border: none;" alt="Teaser Figure">
+    </div>
+    <p><strong>Figure 3</strong>. Qualitative comparison of Instant3D (the base model) and Carve3D (the model finetuned from Instant3D) on 12 prompts (in 12
+blocks separated by dotted line). In each block, we show the their generated multi-view images in the 2-by-2 grid (top), the reconstructed
+NeRF and the extracted mesh (bottom) when given the prompt (middle). We draw red boxes on the NeRF and the extracted mesh to
+highlight the artifacts in the NeRF and the mesh, resulting from the inconsistencies in the multi-view images. Carve3D maintains the
+detailed texture and provides improved multi-view consistency and higher quality NeRF than the base Instant3D.
+    </p>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3" style="display: flex; justify-content: center;">Maintaining Details and Realism</h2>
+    <div class="hero-body" style="display: flex; justify-content: center;">
+      <img src="./static/images/figure_rl_vs_sft.png" style="width: 100%; border: none;" alt="Teaser Figure">
+    </div>
+    <p><strong>Figure 4</strong>. Qualitative comparison of MVDream, Instant3D with 10k, 20k, and 100k SFT steps, and Carve3D (five columns) on four
+prompts (four blocks separated by dotted line). In each block, we show their generated multi-view images in the 2-by-2 grid (top), re-
+constructed NeRF and extracted mesh (bottom) when given the prompt (middle). When compared to the base Instant3D-10K: Carve3D
+maintains the detailed texture and provides improved multi-view consistency and higher quality NeRF; in contrast, the models with pro-
+longed SFT of 20K and 100K steps exhibit worse level of details and realism, while only providing slightly improved consistency.
+    </p>
+    <!--Below are a row of 5 columns of videos for Figure3-->
+    <div class="hero-body">
+<!--      <div class="columns is-multiline is-mobile">-->
+<!--    <div class="column pb-0 mb-0 is-2">-->
+<!--      <video id="video1" autoplay muted loop playsinline height="100%">-->
+<!--        <source src="./static/videos/diversity/a_baby_dragon_drinking_boba.mp4" type="video/mp4">-->
+<!--      </video>-->
+<!--    </div>-->
+<!--    <div class="column pb-0 mb-0 is-2">-->
+<!--      <video id="video2" autoplay muted loop playsinline height="100%">-->
+<!--        <source src="./static/videos/diversity/a_ghost_eating_a_hamburger.mp4" type="video/mp4">-->
+<!--      </video>-->
+<!--    </div>-->
+<!--    &lt;!&ndash; Add three more divs with class="column pb-0 mb-0 is-2" and different videos inside &ndash;&gt;-->
+<!--    <div class="column pb-0 mb-0 is-2">-->
+<!--      <video id="video3" autoplay muted loop playsinline height="100%">-->
+<!--        <source src="./static/videos/diversity/a_ghost_eating_a_hamburger.mp4" type="video/mp4">-->
+<!--      </video>-->
+<!--    </div>-->
+<!--    <div class="column pb-0 mb-0 is-2">-->
+<!--      <video id="video4" autoplay muted loop playsinline height="100%">-->
+<!--        <source src="./static/videos/diversity/a_ghost_eating_a_hamburger.mp4" type="video/mp4">-->
+<!--      </video>-->
+<!--    </div>-->
+<!--    <div class="column pb-0 mb-0 is-2">-->
+<!--      <video id="video5" autoplay muted loop playsinline height="100%">-->
+<!--        <source src="./static/videos/diversity/a_ghost_eating_a_hamburger.mp4" type="video/mp4">-->
+<!--      </video>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--      <div class="columns is-1 is-multiline is-mobile">-->
+<!--        <div class="column pb-0 mb-0 is-half">-->
+<!--          <video id="teaser" autoplay muted loop playsinline height="100%">-->
+<!--            <source src="./static/videos/diversity/a_baby_dragon_drinking_boba.mp4"-->
+<!--                    type="video/mp4">-->
+<!--          </video>-->
+<!--        </div>-->
+<!--        <div class="column pb-0 mb-0 is-half">-->
+<!--          <video id="teaser" autoplay muted loop playsinline height="100%">-->
+<!--            <source src="./static/videos/diversity/a_ghost_eating_a_hamburger.mp4"-->
+<!--                    type="video/mp4">-->
+<!--          </video>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="columns is-1 is-multiline is-mobile">-->
+<!--        <div class="column pb-0 mb-0 is-half" style="text-align:center;">-->
+<!--            a baby dragon drinking boba-->
+<!--        </div>-->
+<!--        <div class="column pb-0 mb-0 is-half" style="text-align:center;">-->
+<!--            a ghost eating a hamburger-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="columns is-1 is-multiline is-mobile">-->
+<!--        <div class="column pb-0 mb-0 is-half">-->
+<!--          <video id="teaser" autoplay muted loop playsinline height="100%">-->
+<!--            <source src="./static/videos/diversity/a_hippo_wearing_a_sweater.mp4"-->
+<!--                    type="video/mp4">-->
+<!--          </video>-->
+<!--        </div>-->
+<!--        <div class="column pb-0 mb-0 is-half">-->
+<!--          <video id="teaser" autoplay muted loop playsinline height="100%">-->
+<!--            <source src="./static/videos/diversity/a_panda_rowing_a_boat_in_a_pond.mp4"-->
+<!--                    type="video/mp4">-->
+<!--          </video>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="columns is-1 is-multiline is-mobile">-->
+<!--        <div class="column pb-0 mb-0 is-half" style="text-align:center;">-->
+<!--            a hippo wearing a sweater-->
+<!--        </div>-->
+<!--        <div class="column pb-0 mb-0 is-half" style="text-align:center;">-->
+<!--            a panda rowing a boat in a pond-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="columns is-1 is-multiline is-mobile">-->
+<!--        <div class="column pb-0 mb-0 is-half">-->
+<!--          <video id="teaser" autoplay muted loop playsinline height="100%">-->
+<!--            <source src="./static/videos/diversity/a_plush_dragon_toy.mp4"-->
+<!--                    type="video/mp4">-->
+<!--          </video>-->
+<!--        </div>-->
+<!--        <div class="column pb-0 mb-0 is-half">-->
+<!--          <video id="teaser" autoplay muted loop playsinline height="100%">-->
+<!--            <source src="./static/videos/diversity/a_squirrel_dressed_like_henry_viii_king_of_england.mp4"-->
+<!--                    type="video/mp4">-->
+<!--          </video>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="columns is-1 is-multiline is-mobile">-->
+<!--        <div class="column pb-0 mb-0 is-half" style="text-align:center;">-->
+<!--            a plush dragon toy-->
+<!--        </div>-->
+<!--        <div class="column pb-0 mb-0 is-half" style="text-align:center;">-->
+<!--            a squirrel dressed like Henry VIII King of England-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="columns is-1 is-multiline is-mobile">-->
+<!--        <div class="column pb-0 mb-0 is-half">-->
+<!--          <video id="teaser" autoplay muted loop playsinline height="100%">-->
+<!--            <source src="./static/videos/diversity/a_tiger_karate_master.mp4"-->
+<!--                    type="video/mp4">-->
+<!--          </video>-->
+<!--        </div>-->
+<!--        <div class="column pb-0 mb-0 is-half">-->
+<!--          <video id="teaser" autoplay muted loop playsinline height="100%">-->
+<!--            <source src="./static/videos/diversity/a_train_engine_made_out_of_clay.mp4"-->
+<!--                    type="video/mp4">-->
+<!--          </video>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="columns is-1 is-multiline is-mobile">-->
+<!--        <div class="column pb-0 mb-0 is-half" style="text-align:center;">-->
+<!--            a tiger karate master-->
+<!--        </div>-->
+<!--        <div class="column pb-0 mb-0 is-half" style="text-align:center;">-->
+<!--            a train engine made out of clay-->
+<!--        </div>-->
+<!--      </div>-->
+
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3"><center>Maintaining Diversity</center></h2>
+    <div class="hero-body" style="display: flex; justify-content: center;">
+      <img src="./static/images/figure_diversity.png" style="width: 100%; border: none;" alt="Teaser Figure">
+    </div>
+    <p><strong>Figure 5</strong>. Diverse results from original Instant3D (left) and our Carve3D (right) on 4 prompts (in 4 blocks separated by the dotted line).
+In each block, we show the their generated multi-view images in the 2-by-2 grid (top), the reconstructed NeRF and the extracted mesh
+(bottom) when given the prompt (middle). Our RLFT does not compromise the diversity of the base Instant3D model, while improving the
+consistency.
+    </p>
+  </div>
+</section>
+
+<!--<section class="section" id="BibTeX">-->
+<!--  <div class="container is-max-desktop content">-->
+<!--    <h2 class="title">BibTeX</h2>-->
+<!--    <pre><code>@article{
+}</code></pre>-->
+<!--  </div>-->
+<!--</section>-->
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            We borrow the source code of this website from <a
+              href="https://github.com/nerfies/nerfies.github.io">HERE</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

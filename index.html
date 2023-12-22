@@ -100,7 +100,8 @@
           <div class="is-size-5 publication-authors">
             <p><br></p>
             <span class="author-block">
-              Text-to-3D, diffusion model Reinforcement Learning Finetuning (RLFT), and a novel Multi-view Reconstruction Consistency (MRC) metric.
+              Keywords: RL finetuning for alignment, diffusion model, text-to-3D, view consistency. <br>
+              Video results coming soon.
             </span>
           </div>
 
@@ -108,14 +109,25 @@
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
-                <a href=""
+                <a href="https://arxiv.org/abs/2312.13980"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper</span>
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+<!--                  <span class="icon">-->
+<!--                      <i class="fas fa-file-pdf"></i>-->
+<!--                  </span>-->
+                  <span>arxiv</span>
                 </a>
               </span>
+              <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <svg class="svg-inline--fa fa-github fa-w-16" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" data-fa-i2svg=""><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg><!-- <i class="fab fa-github"></i> Font Awesome fontawesome.com -->
+                    </span>
+                    <span>Code (Coming Soon)</span>
+                  </a>
+                </span>
             </div>
 
           </div>
@@ -142,43 +154,19 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-          Recent advancements in the text-to-3D task leverage
-          finetuned text-to-image diffusion models to generate multi-
-          view images, followed by NeRF reconstruction. Yet, existing
-          supervised finetuned (SFT) diffusion models still suffer from
-          multi-view inconsistency and the resulting NeRF artifacts.
-          Although training longer with SFT improves consistency, it
-          also causes distribution shift, which reduces diversity and
-          realistic details. We argue that the SFT of multi-view diffusion
-          models resembles the instruction finetuning stage of the
-          LLM RLHF pipeline and can benefit from <strong>RL finetuning (RLFT)</strong> methods. Essentially, RLFT
-          methods optimize models beyond their SFT data distribution,
-          effectively mitigating distribution shift. To this end, we
-          introduce <strong>Carve3D</strong>, a RLFT method coupled with the <strong>Multi-
-          view Reconstruction Consistency (MRC)</strong> metric, to improve
-          the consistency of multi-view diffusion models. To compute
-          MRC on a set of multi-view images, we compare them with
-          their corresponding renderings of the reconstructed NeRF
-          at the same viewpoints. We validate the robustness of MRC
-          with extensive experiments conducted under controlled inconsistency
-          levels. Our enhancements to the base RLFT
-          algorithm stabilizes the training process, reduces distribution
-          shift, and identifies scaling laws. Through qualitative
-          and quantitative experiments, along with a user study, we
-          demonstrate Carve3D’s improved multi-view consistency,
-          the resulting superior NeRF reconstruction quality, and
-          minimal distribution shift compared to longer SFT.
+            Recent advancements in the text-to-3D task leverage finetuned text-to-image diffusion models to generate multi-view images, followed by NeRF reconstruction. Yet, existing supervised finetuned (SFT) diffusion models still suffer from multi-view inconsistency and the resulting NeRF artifacts. Although training longer with SFT improves consistency, it also causes distribution shift, which reduces diversity and realistic details. We argue that the SFT of multi-view diffusion models resembles the instruction finetuning stage of the LLM alignment pipeline and can benefit from <strong>RL finetuning (RLFT)</strong> methods. Essentially, RLFT methods optimize models beyond their SFT data distribution by using their own outputs, effectively mitigating distribution shift. To this end, we introduce <strong>Carve3D</strong>, a RLFT method coupled with the <strong>Multi-view Reconstruction Consistency (MRC)</strong> metric, to improve the consistency of multi-view diffusion models. To compute MRC on a set of multi-view images, we compare them with their corresponding renderings of the reconstructed NeRF at the same viewpoints. We validate the robustness of MRC with extensive experiments conducted under controlled inconsistency levels. We enhance the base RLFT algorithm to stabilize the training process, reduce distribution shift, and identify scaling laws. Through qualitative and quantitative experiments, along with a user study, we demonstrate Carve3D's improved multi-view consistency, the resulting superior NeRF reconstruction quality, and minimal distribution shift compared to longer SFT.
           </p>
         </div>
       </div>
     </div>
     <img src="./static/images/figure_overview.png" alt="pipeline">
     <p><strong>Figure 2</strong>. Overview of Carve3D. Given a prompt sampled from the curated prompt set, we run the denoising process to obtain the final
-    denoised image, which contains four multi-view images tiled in a 2-by-2 grid. MRC reward is computed by comparing (a) the generated
-    multi-view images with (c) the corresponding multi-view images rendered at the same camera viewpoints from (b) the reconstructed NeRF.
-    Then, we train the model with policy gradient loss function, where the loss is derived from the reward and log probabilities of the model’s
-    predicted noise, accumulated across all denoising timesteps. Using only a set of prompts, this RLFT process finetunes the diffusion model
-    with its own outputs, without relying on ground truth multi-view images.
+      denoised image, which contains four multi-view images tiled in a 2-by-2 grid. MRC reward is computed by comparing (a) the generated
+      multi-view images with (c) the corresponding multi-view images rendered at the same camera viewpoints from (b) the reconstructed NeRF.
+      Then, we train the model with policy gradient loss function, where the loss is derived from the reward and log probabilities of the model’s
+      predicted noise, accumulated across all denoising timesteps. Using only a set of prompts, this RLFT process finetunes the diffusion model
+      with its own outputs, without relying on ground truth multi-view images.
+
       </p>
   </div>
 </section>
@@ -190,10 +178,11 @@
       <img src="./static/images/figure_suppl_qualitative.png" style="width: 100%; border: none;" alt="Teaser Figure">
     </div>
     <p><strong>Figure 3</strong>. Qualitative comparison of Instant3D (the base model) and Carve3D (the model finetuned from Instant3D) on 12 prompts (in 12
-blocks separated by dotted line). In each block, we show the their generated multi-view images in the 2-by-2 grid (top), the reconstructed
-NeRF and the extracted mesh (bottom) when given the prompt (middle). We draw red boxes on the NeRF and the extracted mesh to
-highlight the artifacts in the NeRF and the mesh, resulting from the inconsistencies in the multi-view images. Carve3D maintains the
-detailed texture and provides improved multi-view consistency and higher quality NeRF than the base Instant3D.
+    blocks separated by dotted line). In each block, we show the their generated multi-view images in the 2-by-2 grid (top), the reconstructed
+    NeRF and the extracted mesh (bottom) when given the prompt (middle). We draw red boxes on the NeRF and the extracted mesh to
+    highlight the artifacts in the NeRF and the mesh, resulting from the inconsistencies in the multi-view images. Carve3D maintains the
+    detailed texture and provides improved multi-view consistency and higher quality NeRF than the base Instant3D.
+
     </p>
   </div>
 </section>
@@ -205,10 +194,9 @@ detailed texture and provides improved multi-view consistency and higher quality
       <img src="./static/images/figure_rl_vs_sft.png" style="width: 100%; border: none;" alt="Teaser Figure">
     </div>
     <p><strong>Figure 4</strong>. Qualitative comparison of MVDream, Instant3D with 10k, 20k, and 100k SFT steps, and Carve3D (five columns) on four
-prompts (four blocks separated by dotted line). In each block, we show their generated multi-view images in the 2-by-2 grid (top), re-
-constructed NeRF and extracted mesh (bottom) when given the prompt (middle). When compared to the base Instant3D-10K: Carve3D
-maintains the detailed texture and provides improved multi-view consistency and higher quality NeRF; in contrast, the models with pro-
-longed SFT of 20K and 100K steps exhibit worse level of details and realism, while only providing slightly improved consistency.
+    prompts (four blocks separated by dotted line). In each block, we show their generated multi-view images in the 2-by-2 grid (top), reconstructed NeRF and extracted mesh (bottom) when given the prompt (middle). When compared to the base Instant3D-10K: Carve3D
+    maintains the detailed texture and provides improved multi-view consistency and higher quality NeRF; in contrast, the models with prolonged SFT of 20K and 100K steps exhibit worse level of details and realism, while only providing slightly improved consistency.
+
     </p>
     <!--Below are a row of 5 columns of videos for Figure3-->
     <div class="hero-body">
@@ -347,20 +335,26 @@ longed SFT of 20K and 100K steps exhibit worse level of details and realism, whi
       <img src="./static/images/figure_diversity.png" style="width: 100%; border: none;" alt="Teaser Figure">
     </div>
     <p><strong>Figure 5</strong>. Diverse results from original Instant3D (left) and our Carve3D (right) on 4 prompts (in 4 blocks separated by the dotted line).
-In each block, we show the their generated multi-view images in the 2-by-2 grid (top), the reconstructed NeRF and the extracted mesh
-(bottom) when given the prompt (middle). Our RLFT does not compromise the diversity of the base Instant3D model, while improving the
-consistency.
+    In each block, we show the their generated multi-view images in the 2-by-2 grid (top), the reconstructed NeRF and the extracted mesh
+    (bottom) when given the prompt (middle). Our RLFT does not compromise the diversity of the base Instant3D model, while improving the
+    consistency.
     </p>
   </div>
 </section>
 
-<!--<section class="section" id="BibTeX">-->
-<!--  <div class="container is-max-desktop content">-->
-<!--    <h2 class="title">BibTeX</h2>-->
-<!--    <pre><code>@article{
-}</code></pre>-->
-<!--  </div>-->
-<!--</section>-->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@misc{xie2023carve3d,
+    title={Carve3D: Improving Multi-view Reconstruction Consistency for Diffusion Models with RL Finetuning},
+    author={Desai Xie and Jiahao Li and Hao Tan and Xin Sun and Zhixin Shu and Yi Zhou and Sai Bi and Sören Pirk and Arie E. Kaufman},
+    year={2023},
+    eprint={2312.13980},
+    archivePrefix={arXiv},
+    primaryClass={cs.CV}
+}</code></pre>
+  </div>
+</section>
 
 <footer class="footer">
   <div class="container">

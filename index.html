@@ -43,6 +43,11 @@
       width: 300px;
       height: 300px;
     }
+    .update {
+      background-color: #f7f093;
+      border-radius: 5pt;
+      padding: 0.1em 1em;
+    }
   </style>  
 </head>
 
@@ -100,10 +105,20 @@
           <div class="is-size-5 publication-authors">
             <p><br></p>
             <span class="author-block">
-              Keywords: RL finetuning for alignment, diffusion model, text-to-3D, view consistency. <br>
-              Video results coming soon.
+<!--              Keywords: Text-to-3D, diffusion model, RL finetuning for alignment, multi-view consistency. <br>-->
+              Finetunes multi-view diffusion models with RL to improve multi-view consistency and NeRF quality, without relying on ground truth multi-view dataset. <br>
+              Plus a novel metric for evaluating the consistency of multi-view diffusion models.
             </span>
           </div>
+
+          <p><br></p>
+
+          <div class="update">
+            <p><b>UPDATE 02/26/2024:</b> Carve3D has been accepted to <a href="https://cvpr.thecvf.com/Conferences/2024">CVPR 2024</a>!</p>
+            <p><b>UPDATE 03/04/2024:</b> Video results are available.</p>
+            <p><b>UPDATE 04/14/2024:</b> Updated this website and our arXiv paper to include changes in the CVPR 2024 camera ready version.</p>
+          </div>
+
 
           <div class="column has-text-centered">
             <div class="publication-links">
@@ -125,7 +140,7 @@
                     <span class="icon">
                       <svg class="svg-inline--fa fa-github fa-w-16" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" data-fa-i2svg=""><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg><!-- <i class="fab fa-github"></i> Font Awesome fontawesome.com -->
                     </span>
-                    <span>Code</span>
+                    <span>Code & Data</span>
                   </a>
                 </span>
             </div>
@@ -144,11 +159,21 @@
 <!--    </div>-->
 
     <div class="hero-body" style="display: flex; justify-content: center;">
-      <video id="video1" autoplay muted loop playsinline style="width: 100%; height: auto">
+      <video id="video1" autoplay muted loop playsinline style="width: 70%; height: auto">
         <source src="./static/videos/figure_teaser_vid_trimmed.mp4" type="video/mp4">
       </video>
     </div>
-
+    <p><strong>Figure 1</strong>.
+      Our Carve3D algorithm steadily improves the 3D consistency of a multi-view diffusion model and the resulting quality
+      of the NeRF and the mesh, without sacrificing its image-prompt
+      alignment, texture details, or realism. Here, we show 3 testingset results (in 3 rows, numbered as 1-3, separated by dotted lines)
+      from the finetuning process (epoch 0, 28, and 55 in 3 columns).
+      Each row includes the generated multi-view images (denoted as
+      MV), video and a sample frame of the reconstructed NeRF and extracted mesh (frame is denoted as RM and video is denoted as RMV)
+      and the text prompt (denoted as TP). The inconsistencies in the
+      multi-view images, e.g. the facing direction of the shopping cart,
+      the position of the octopus arms, and the position of the pencils,
+      lead to artifacts in the NeRF and the mesh (highlighted in red).</p>
   </div>
 </section>
 
@@ -161,179 +186,73 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Recent advancements in the text-to-3D task leverage finetuned text-to-image diffusion models to generate multi-view images, followed by NeRF reconstruction. Yet, existing supervised finetuned (SFT) diffusion models still suffer from multi-view inconsistency and the resulting NeRF artifacts. Although training longer with SFT improves consistency, it also causes distribution shift, which reduces diversity and realistic details. We argue that the SFT of multi-view diffusion models resembles the instruction finetuning stage of the LLM alignment pipeline and can benefit from <strong>RL finetuning (RLFT)</strong> methods. Essentially, RLFT methods optimize models beyond their SFT data distribution by using their own outputs, effectively mitigating distribution shift. To this end, we introduce <strong>Carve3D</strong>, a RLFT method coupled with the <strong>Multi-view Reconstruction Consistency (MRC)</strong> metric, to improve the consistency of multi-view diffusion models. To compute MRC on a set of multi-view images, we compare them with their corresponding renderings of the reconstructed NeRF at the same viewpoints. We validate the robustness of MRC with extensive experiments conducted under controlled inconsistency levels. We enhance the base RLFT algorithm to stabilize the training process, reduce distribution shift, and identify scaling laws. Through qualitative and quantitative experiments, along with a user study, we demonstrate Carve3D's improved multi-view consistency, the resulting superior NeRF reconstruction quality, and minimal distribution shift compared to longer SFT.
+            Multi-view diffusion models, obtained by applying Supervised Finetuning (SFT) to text-to-image diffusion models, have driven recent breakthroughs in text-to-3D research. However, due to the limited size and quality of existing 3D datasets, they still suffer from multi-view inconsistencies and Neural Radiance Field (NeRF) reconstruction artifacts. We argue that multi-view diffusion models can benefit from further Reinforcement Learning Finetuning (RLFT), which allows models to learn from the data generated by themselves and improve beyond their dataset limitations during SFT. To this end, we introduce Carve3D, an improved RLFT algorithm coupled with a novel Multi-view Reconstruction Consistency (MRC) metric, to enhance the consistency of multi-view diffusion models. To measure the MRC metric on a set of multi-view images, we compare them with their corresponding NeRF renderings at the same camera viewpoints. The resulting model, which we denote as Carve3DM, demonstrates superior multi-view consistency and NeRF reconstruction quality than existing models. Our results suggest that pairing SFT with Carve3D's RLFT is essential for developing multi-view-consistent diffusion models, mirroring the standard Large Language Model (LLM) alignment pipeline.
           </p>
+          <p><br></p>
         </div>
       </div>
     </div>
-    <img src="./static/images/figure_overview.png" alt="pipeline">
-    <p><strong>Figure 2</strong>. Overview of Carve3D. Given a prompt sampled from the curated prompt set, we run the denoising process to obtain the final
-      denoised image, which contains four multi-view images tiled in a 2-by-2 grid. MRC reward is computed by comparing (a) the generated
-      multi-view images with (c) the corresponding multi-view images rendered at the same camera viewpoints from (b) the reconstructed NeRF.
-      Then, we train the model with policy gradient loss function, where the loss is derived from the reward and log probabilities of the model’s
-      predicted noise, accumulated across all denoising timesteps. Using only a set of prompts, this RLFT process finetunes the diffusion model
-      with its own outputs, without relying on ground truth multi-view images.
+  </div>
+</section>
 
-      </p>
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3" style="display: flex; justify-content: center;">Overview</h2>
+    <div class="hero-body" style="display: flex; justify-content: center;">
+      <img src="./static/images/figure_overview.png" style="width: 100%; border: none;" alt="Teaser Figure">
+    </div>
+    <p><strong>Figure 2</strong>. Overview of Carve3D. Given a prompt sampled from our curated prompt set and a initial noisy image, we iteratively denoise
+      the image using the UNet. The final, clean image contains four multi-view images tiled in a 2-by-2 grid. MRC reward is computed by
+      comparing (a) the generated multi-view images with (c) the corresponding multi-view images rendered at the same camera viewpoints
+      from (b) the reconstructed NeRF. Then, we train the model with policy gradient loss function, where the loss is derived from the reward
+      and log probabilities of the UNet’s predictions, accumulated over all denoising timesteps. By using only a set of training text prompts, our
+      RLFT algorithm finetunes the diffusion model by evaluating its own generated outputs, without relying on ground truth multi-view images.
+    </p>
+    <p style="margin-bottom:2cm;"><br></p>
   </div>
 </section>
 
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <h2 class="title is-3" style="display: flex; justify-content: center;">Improving Multi-view Consistency and NeRF Quality</h2>
+<!--    <div class="hero-body" style="display: flex; justify-content: center;">-->
+<!--      <img src="./static/images/figure_suppl_qualitative.png" style="width: 100%; border: none;" alt="Teaser Figure">-->
+<!--    </div>-->
     <div class="hero-body" style="display: flex; justify-content: center;">
-      <img src="./static/images/figure_suppl_qualitative.png" style="width: 100%; border: none;" alt="Teaser Figure">
+      <video id="video2" autoplay muted loop playsinline style="width: 100%; height: auto">
+        <source src="./static/videos/figure_suppl_qualitative_vid_trimmed_doubled.mp4" type="video/mp4">
+      </video>
     </div>
-    <p><strong>Figure 3</strong>. Qualitative comparison of Instant3D (the base model) and Carve3D (the model finetuned from Instant3D) on 12 prompts (in 12
-    blocks separated by dotted line). In each block, we show the their generated multi-view images in the 2-by-2 grid (top), the reconstructed
-    NeRF and the extracted mesh (bottom) when given the prompt (middle). We draw red boxes on the NeRF and the extracted mesh to
-    highlight the artifacts in the NeRF and the mesh, resulting from the inconsistencies in the multi-view images. Carve3D maintains the
-    detailed texture and provides improved multi-view consistency and higher quality NeRF than the base Instant3D.
-
+    <p><strong>Figure 3</strong>.  Qualitative comparison of Instant3D (the base model) and Carve3D (ours, finetuned from Instant3D) on 12 prompts (in 12
+      blocks, numbered as 1-12, separated by dotted line). In each block, we show the their generated multi-view images in the 2-by-2 grid
+      (denoted as MV), video and a sample frame of the reconstructed NeRF and extracted mesh (frame is denoted as RM and video is denoted as RMV) when given the text prompt (denoted as TP). For each
+      result, we use the same randomly sampled initial noise for all models to ensure the comparison is fair. We draw red boxes on the NeRF
+      and the extracted mesh to highlight the artifacts in the NeRF and the mesh, resulting from the inconsistencies in the multi-view images.
+      Carve3D maintains the detailed texture and provides improved multi-view consistency and higher quality NeRF than the base Instant3D.
     </p>
+    <p style="margin-bottom:2cm;"><br></p>
   </div>
 </section>
 
 <section class="hero teaser">
   <div class="container is-max-desktop">
-    <h2 class="title is-3" style="display: flex; justify-content: center;">Maintaining Details and Realism</h2>
+    <h2 class="title is-3" style="display: flex; justify-content: center;">Comparing to Base Model with Longer SFT and Existing Methods</h2>
     <div class="hero-body" style="display: flex; justify-content: center;">
       <img src="./static/images/figure_rl_vs_sft.png" style="width: 100%; border: none;" alt="Teaser Figure">
     </div>
-    <p><strong>Figure 4</strong>. Qualitative comparison of MVDream, Instant3D with 10k, 20k, and 100k SFT steps, and Carve3D (five columns) on four
-    prompts (four blocks separated by dotted line). In each block, we show their generated multi-view images in the 2-by-2 grid (top), reconstructed NeRF and extracted mesh (bottom) when given the prompt (middle). When compared to the base Instant3D-10K: Carve3D
-    maintains the detailed texture and provides improved multi-view consistency and higher quality NeRF; in contrast, the models with prolonged SFT of 20K and 100K steps exhibit worse level of details and realism, while only providing slightly improved consistency.
-
+    <p><strong>Figure 4</strong>.  Qualitative comparison of MVDream [46], Instant3D [24] with 10K (the base model), 20K, and 100K SFT steps, Carve3D (ours,
+      finetuned from Instant3D-10K), Zero123++ [47], and SyncDreamer [28] (7 models in 7 columns) on 4 prompts (in 4 rows, numbered as 1-4,
+      separated by dotted line). In each row, we show their generated multi-view images in the 2-by-2 grid (denoted as MV), reconstructed NeRF
+      and extracted mesh (denoted as RM) when given the text prompt (denoted as TP). MVDream, Zero123++, and SyncDreamer generates
+      inconsistent multi-view images and reconstruction artifacts (highlighted in red). For each result, we use the same randomly sampled initial
+      noise for all models to ensure the comparison is fair. We let Zero123++ and SyncDreamer to use one of Carve3D’s output multi-view
+      images as their input image conditioning. Instant3D-10K, -20K, and -100K and Carve3D demonstrates progressively better multi-view
+      consistency and reconstruction quality. Instant3D-10K, Carve3D, Zero123++, and SyncDreamer exhibits the best texture details and
+      realism, whereas Instant3D-20K and -100K with prolonged SFT steps compromise those qualities.
     </p>
-    <!--Below are a row of 5 columns of videos for Figure3-->
-    <div class="hero-body">
-<!--      <div class="columns is-multiline is-mobile">-->
-<!--    <div class="column pb-0 mb-0 is-2">-->
-<!--      <video id="video1" autoplay muted loop playsinline height="100%">-->
-<!--        <source src="./static/videos/diversity/a_baby_dragon_drinking_boba.mp4" type="video/mp4">-->
-<!--      </video>-->
-<!--    </div>-->
-<!--    <div class="column pb-0 mb-0 is-2">-->
-<!--      <video id="video2" autoplay muted loop playsinline height="100%">-->
-<!--        <source src="./static/videos/diversity/a_ghost_eating_a_hamburger.mp4" type="video/mp4">-->
-<!--      </video>-->
-<!--    </div>-->
-<!--    &lt;!&ndash; Add three more divs with class="column pb-0 mb-0 is-2" and different videos inside &ndash;&gt;-->
-<!--    <div class="column pb-0 mb-0 is-2">-->
-<!--      <video id="video3" autoplay muted loop playsinline height="100%">-->
-<!--        <source src="./static/videos/diversity/a_ghost_eating_a_hamburger.mp4" type="video/mp4">-->
-<!--      </video>-->
-<!--    </div>-->
-<!--    <div class="column pb-0 mb-0 is-2">-->
-<!--      <video id="video4" autoplay muted loop playsinline height="100%">-->
-<!--        <source src="./static/videos/diversity/a_ghost_eating_a_hamburger.mp4" type="video/mp4">-->
-<!--      </video>-->
-<!--    </div>-->
-<!--    <div class="column pb-0 mb-0 is-2">-->
-<!--      <video id="video5" autoplay muted loop playsinline height="100%">-->
-<!--        <source src="./static/videos/diversity/a_ghost_eating_a_hamburger.mp4" type="video/mp4">-->
-<!--      </video>-->
-<!--    </div>-->
-<!--  </div>-->
-
-<!--      <div class="columns is-1 is-multiline is-mobile">-->
-<!--        <div class="column pb-0 mb-0 is-half">-->
-<!--          <video id="teaser" autoplay muted loop playsinline height="100%">-->
-<!--            <source src="./static/videos/diversity/a_baby_dragon_drinking_boba.mp4"-->
-<!--                    type="video/mp4">-->
-<!--          </video>-->
-<!--        </div>-->
-<!--        <div class="column pb-0 mb-0 is-half">-->
-<!--          <video id="teaser" autoplay muted loop playsinline height="100%">-->
-<!--            <source src="./static/videos/diversity/a_ghost_eating_a_hamburger.mp4"-->
-<!--                    type="video/mp4">-->
-<!--          </video>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <div class="columns is-1 is-multiline is-mobile">-->
-<!--        <div class="column pb-0 mb-0 is-half" style="text-align:center;">-->
-<!--            a baby dragon drinking boba-->
-<!--        </div>-->
-<!--        <div class="column pb-0 mb-0 is-half" style="text-align:center;">-->
-<!--            a ghost eating a hamburger-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      <div class="columns is-1 is-multiline is-mobile">-->
-<!--        <div class="column pb-0 mb-0 is-half">-->
-<!--          <video id="teaser" autoplay muted loop playsinline height="100%">-->
-<!--            <source src="./static/videos/diversity/a_hippo_wearing_a_sweater.mp4"-->
-<!--                    type="video/mp4">-->
-<!--          </video>-->
-<!--        </div>-->
-<!--        <div class="column pb-0 mb-0 is-half">-->
-<!--          <video id="teaser" autoplay muted loop playsinline height="100%">-->
-<!--            <source src="./static/videos/diversity/a_panda_rowing_a_boat_in_a_pond.mp4"-->
-<!--                    type="video/mp4">-->
-<!--          </video>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <div class="columns is-1 is-multiline is-mobile">-->
-<!--        <div class="column pb-0 mb-0 is-half" style="text-align:center;">-->
-<!--            a hippo wearing a sweater-->
-<!--        </div>-->
-<!--        <div class="column pb-0 mb-0 is-half" style="text-align:center;">-->
-<!--            a panda rowing a boat in a pond-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      <div class="columns is-1 is-multiline is-mobile">-->
-<!--        <div class="column pb-0 mb-0 is-half">-->
-<!--          <video id="teaser" autoplay muted loop playsinline height="100%">-->
-<!--            <source src="./static/videos/diversity/a_plush_dragon_toy.mp4"-->
-<!--                    type="video/mp4">-->
-<!--          </video>-->
-<!--        </div>-->
-<!--        <div class="column pb-0 mb-0 is-half">-->
-<!--          <video id="teaser" autoplay muted loop playsinline height="100%">-->
-<!--            <source src="./static/videos/diversity/a_squirrel_dressed_like_henry_viii_king_of_england.mp4"-->
-<!--                    type="video/mp4">-->
-<!--          </video>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <div class="columns is-1 is-multiline is-mobile">-->
-<!--        <div class="column pb-0 mb-0 is-half" style="text-align:center;">-->
-<!--            a plush dragon toy-->
-<!--        </div>-->
-<!--        <div class="column pb-0 mb-0 is-half" style="text-align:center;">-->
-<!--            a squirrel dressed like Henry VIII King of England-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      <div class="columns is-1 is-multiline is-mobile">-->
-<!--        <div class="column pb-0 mb-0 is-half">-->
-<!--          <video id="teaser" autoplay muted loop playsinline height="100%">-->
-<!--            <source src="./static/videos/diversity/a_tiger_karate_master.mp4"-->
-<!--                    type="video/mp4">-->
-<!--          </video>-->
-<!--        </div>-->
-<!--        <div class="column pb-0 mb-0 is-half">-->
-<!--          <video id="teaser" autoplay muted loop playsinline height="100%">-->
-<!--            <source src="./static/videos/diversity/a_train_engine_made_out_of_clay.mp4"-->
-<!--                    type="video/mp4">-->
-<!--          </video>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <div class="columns is-1 is-multiline is-mobile">-->
-<!--        <div class="column pb-0 mb-0 is-half" style="text-align:center;">-->
-<!--            a tiger karate master-->
-<!--        </div>-->
-<!--        <div class="column pb-0 mb-0 is-half" style="text-align:center;">-->
-<!--            a train engine made out of clay-->
-<!--        </div>-->
-<!--      </div>-->
-
-    </div>
+    <p style="margin-bottom:2cm;"><br></p>
   </div>
 </section>
-
-
-
 
 <section class="hero teaser">
   <div class="container is-max-desktop">
@@ -341,10 +260,11 @@
     <div class="hero-body" style="display: flex; justify-content: center;">
       <img src="./static/images/figure_diversity.png" style="width: 100%; border: none;" alt="Teaser Figure">
     </div>
-    <p><strong>Figure 5</strong>. Diverse results from original Instant3D (left) and our Carve3D (right) on 4 prompts (in 4 blocks separated by the dotted line).
-    In each block, we show the their generated multi-view images in the 2-by-2 grid (top), the reconstructed NeRF and the extracted mesh
-    (bottom) when given the prompt (middle). Our RLFT does not compromise the diversity of the base Instant3D model, while improving the
-    consistency.
+    <p><strong>Figure 5</strong>. Qualitative comparison of Instant3D (the base model) and Carve3D (ours, finetuned from Instant3D) on 4 prompts (in 4 rows,
+      numbered as 1-4, separated by the dotted line) demonstrating diversity. In each row, we show 3 results from each model, including the
+      generated multi-view images in the 2-by-2 grid (denoted as MV), the reconstructed NeRF and the extracted mesh (denoted as bottom)
+      when given the prompt (denoted as middle). For each result, we use the same randomly sampled initial noise for all models to ensure the
+      comparison is fair. Our RLFT maintains the diversity of the base Instant3D model, while improving the consistency.
     </p>
   </div>
 </section>
